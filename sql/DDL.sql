@@ -57,24 +57,22 @@ CREATE TABLE IF NOT EXISTS `Locations` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Pets` (
   `pet_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
   `species_id` INT NOT NULL,
+  `location_id` INT NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
   `birthday` DATE NULL,
   `date_arrived` DATE NOT NULL,
-  `location_id` INT NOT NULL,
   `adoption_cost` DECIMAL(6,2) NOT NULL,
   `gender` VARCHAR(1) NOT NULL,
-  PRIMARY KEY (`pet_id`, `location_id`, `species_id`),
+  PRIMARY KEY (`pet_id`),
   CONSTRAINT `fk_Pets_Species`
     FOREIGN KEY (`species_id`)
     REFERENCES `Species` (`species_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE,
   CONSTRAINT `fk_Pets_Locations`
     FOREIGN KEY (`location_id`)
     REFERENCES `Locations` (`location_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE);
 
 -- -----------------------------------------------------
 -- Table `Adoptions`
@@ -84,17 +82,15 @@ CREATE TABLE IF NOT EXISTS `Adoptions` (
   `customer_id` INT NOT NULL,
   `pet_id` INT NOT NULL,
   `adoption_date` DATE NOT NULL,
-  PRIMARY KEY (`adoption_id`, `customer_id`, `pet_id`),
+  PRIMARY KEY (`adoption_id`),
   CONSTRAINT `fk_Adoptions_Customers`
     FOREIGN KEY (`customer_id`)
     REFERENCES `Customers` (`customer_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE,
   CONSTRAINT `fk_Adoptions_Pets`
     FOREIGN KEY (`pet_id`)
     REFERENCES `Pets` (`pet_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE);
 
 -- -----------------------------------------------------
 -- Table `Vaccines`
@@ -112,17 +108,15 @@ CREATE TABLE IF NOT EXISTS `Vaccinations` (
   `pet_id` INT NOT NULL,
   `vaccine_id` INT NOT NULL,
   `vaccination_date` DATE NOT NULL,
-  PRIMARY KEY (`vaccination_id`, `pet_id`, `vaccine_id`),
+  PRIMARY KEY (`vaccination_id`),
   CONSTRAINT `fk_Vaccinations_Pets`
     FOREIGN KEY (`pet_id`)
     REFERENCES `Pets` (`pet_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE,
   CONSTRAINT `fk_Vaccinations_Vaccines`
     FOREIGN KEY (`vaccine_id`)
     REFERENCES `Vaccines` (`vaccine_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
+    ON DELETE CASCADE);
 
 -- -----------------------------------------------------
 -- Sample Customers

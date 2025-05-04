@@ -21,6 +21,7 @@ FROM Customers;
 -- Queries for the List Pets Page
 -- -----------------------------------------------------
 
+-- TODO: Add a field indicating adoption state.
 -- Get all pets.
 SELECT
     Pets.name,
@@ -35,6 +36,45 @@ JOIN Locations
 ON Pets.location_id = Locations.location_id
 JOIN Species
 ON Pets.species_id = Species.species_id;
+
+-- Add a new pet.
+-- NOTE: This is a parameterized query.
+INSERT INTO Pets (
+    species_id,
+    location_id,
+    name,
+    birthday,
+    date_arrived,
+    adoption_cost,
+    gender
+)
+VALUES ( 
+    @species_id,
+    @location_id,
+    @name,
+    @birthday,
+    @date_arrived,
+    @adoption_cost,
+    @gender
+);
+
+-- Update a pet.
+-- NOTE: This is a parameterized query.
+UPDATE Pets
+SET
+    species_id = @species_id,
+    location_id = @location_id,
+    name = @name,
+    birthday = @birthday,
+    date_arrived = @date_arrived,
+    adoption_cost = @adoption_cost,
+    gender = @gender
+WHERE pet_id = @pet_id;
+
+-- Delete a pet.
+-- NOTE: This is a parameterized query.
+DELETE FROM Pets
+WHERE pet_id = @pet_id;
 
 -- -----------------------------------------------------
 -- Queries for the List Shelter Locations Page
@@ -121,7 +161,7 @@ JOIN Adoptions
 ON Customers.customer_id = Adoptions.customer_id
 JOIN Pets
 ON Adoptions.pet_id = Pets.pet_id
-WHERE Customers.customer_id = @id_of_customer;
+WHERE Customers.customer_id = @customer_id;
 
 -- Get all vaccines for a given pet.
 -- NOTE: This is a parameterized query.
@@ -133,4 +173,4 @@ JOIN Vaccinations
 ON Pets.pet_id = Vaccinations.pet_id
 JOIN Vaccines
 ON Vaccinations.vaccine_id = Vaccines.vaccine_id
-WHERE Pets.pet_id = @id_of_pet;
+WHERE Pets.pet_id = @pet_id;

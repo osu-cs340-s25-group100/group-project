@@ -1,5 +1,6 @@
 -- Group 100: Cassandra Fleming and Paul Meleason
 -- Citations: Used the DML file provided on Canvas as reference.
+-- No AI was used.
 
 -- -----------------------------------------------------
 -- Queries for the List Customers Page
@@ -148,6 +149,7 @@ FROM Vaccines;
 -- Queries for the List Adoptions Page
 -- -----------------------------------------------------
 
+-- READ
 -- Get all adoptions.
 SELECT
     Adoptions.adoption_id,
@@ -162,6 +164,63 @@ ON Adoptions.customer_id = Customers.customer_id
 JOIN
 Pets
 ON Adoptions.pet_id = Pets.pet_id;
+
+-- CREATE / UPDATE
+-- Queries for dropdown selectors:
+-- Get all customers for dropdown selector.
+SELECT
+    customer_id,
+    name
+FROM Customers;
+
+-- Get all UNADOPTED pets for dropdown selector.
+SELECT
+    pet_id,
+    name
+FROM Pets
+WHERE pet_id NOT IN
+-- Subquery for ids of already adopted pets
+(
+    SELECT pet_id
+    FROM Adoptions
+);
+
+-- CREATE
+-- Add a new adoption.
+INSERT INTO Adoptions (
+    customer_id,
+    pet_id,
+    adoption_date
+)
+VALUES (
+    @customer_id,
+    @pet_id,
+    @adoption_date
+);
+
+-- UPDATE
+-- Get a single adoption for update form.
+-- NOTE: This is a parameterized query.
+SELECT
+    adoption_id,
+    customer_id,
+    pet_id,
+    adoption_date
+FROM Adoptions
+WHERE adoption_id = @adoption_id;
+
+-- Update an adoption.
+UPDATE Adoptions
+SET
+    customer_id = @customer_id,
+    pet_id = @pet_id,
+    adoption_date = @adoption_date
+WHERE adoption_id = @adoption_id;
+
+-- DELETE
+-- Delete an adoption.
+DELETE FROM Adoptions
+WHERE adoption_id = @adoption_id;
 
 -- -----------------------------------------------------
 -- Queries for the List Vaccinations Page

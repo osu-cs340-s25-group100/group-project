@@ -56,24 +56,6 @@ JOIN
 ) AS Pet_Adoptions
 ON Pets.pet_id = Pet_Adoptions.pet_id;
 
--- Get a single pet.
-SELECT
-    Pets.name,
-    Pets.birthday,
-    Pets.date_arrived,
-    Pets.adoption_cost,
-    Pets.gender,
-    Pets.species_id,
-    Species.name AS species,
-    Pets.location_id,
-    locations.name AS shelter
-FROM Pets
-JOIN Locations
-ON Pets.location_id = Locations.location_id
-JOIN Species
-ON Pets.species_id = Species.species_id
-WHERE Pets.pet_id = @pet_id;
-
 -- CREATE
 -- Add a new pet.
 -- NOTE: This is a parameterized query.
@@ -97,6 +79,25 @@ VALUES (
 );
 
 -- UPDATE
+-- Get a single pet for update form.
+-- NOTE: This is a parameterized query.
+SELECT
+    Pets.name,
+    Pets.birthday,
+    Pets.date_arrived,
+    Pets.adoption_cost,
+    Pets.gender,
+    Pets.species_id,
+    Species.name AS species,
+    Pets.location_id,
+    locations.name AS shelter
+FROM Pets
+JOIN Locations
+ON Pets.location_id = Locations.location_id
+JOIN Species
+ON Pets.species_id = Species.species_id
+WHERE Pets.pet_id = @pet_id;
+
 -- Update a pet.
 -- NOTE: This is a parameterized query.
 UPDATE Pets
@@ -195,6 +196,7 @@ WHERE pet_id NOT IN
 
 -- CREATE
 -- Add a new adoption.
+-- NOTE: This is a parameterized query.
 INSERT INTO Adoptions (
     customer_id,
     pet_id,
@@ -218,6 +220,7 @@ FROM Adoptions
 WHERE adoption_id = @adoption_id;
 
 -- Update an adoption.
+-- NOTE: This is a parameterized query.
 UPDATE Adoptions
 SET
     customer_id = @customer_id,
@@ -227,6 +230,7 @@ WHERE adoption_id = @adoption_id;
 
 -- DELETE
 -- Delete an adoption.
+-- NOTE: This is a parameterized query.
 DELETE FROM Adoptions
 WHERE adoption_id = @adoption_id;
 
@@ -289,6 +293,7 @@ FROM Vaccinations
 WHERE vaccination_id = @vaccination_id;
 
 -- Update a vaccination.
+-- NOTE: This is a parameterized query.
 UPDATE Vaccinations
 SET
     pet_id = @pet_id,
@@ -298,6 +303,7 @@ WHERE vaccination_id = @vaccination_id;
 
 -- DELETE
 -- Delete a vaccination.
+-- NOTE: This is a parameterized query.
 DELETE FROM Vaccinations
 WHERE vaccination_id = @vaccination_id;
 

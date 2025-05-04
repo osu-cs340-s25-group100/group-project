@@ -1,0 +1,22 @@
+{
+  "name": "forever-home",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "development": "npx nodemon app.js",
+    "production": "npx forever start app.js",
+    "stop_production": "npx forever stop app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.1",
+    "forever": "^4.0.3",
+    "mysql2": "^3.14.1",
+    "nodemon": "^3.1.10"
+  }
+}

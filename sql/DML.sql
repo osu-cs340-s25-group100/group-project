@@ -26,6 +26,7 @@ FROM Customers;
 -- READ
 -- Get all pets.
 SELECT
+    Pets.pet_id,
     Pets.name,
     Pets.birthday,
     Pets.date_arrived,

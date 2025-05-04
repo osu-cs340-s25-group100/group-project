@@ -14,7 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-const PORT = 6717;
+// NOTE: This was added to use an .env file for the port.
+require('dotenv').config();
+const PORT =  process.env.PORT;
 
 // Database
 const db = require('./database/db-connector');

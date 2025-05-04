@@ -21,7 +21,6 @@ FROM Customers;
 -- Queries for the List Pets Page
 -- -----------------------------------------------------
 
--- TODO: Add a field indicating adoption state.
 -- Get all pets.
 SELECT
     Pets.name,
@@ -29,13 +28,48 @@ SELECT
     Pets.date_arrived,
     Pets.adoption_cost,
     Pets.gender,
-    Species.name as species,
-    Locations.name as shelter
+    Species.name AS species,
+    Locations.name AS shelter,
+    Pet_Adoptions.adopted
 FROM Pets
 JOIN Locations
 ON Pets.location_id = Locations.location_id
 JOIN Species
-ON Pets.species_id = Species.species_id;
+ON Pets.species_id = Species.species_id
+JOIN
+-- Subquery for adoption status for each pet.
+(
+    SELECT
+        Pets.pet_id,
+        -- learned from https://stackoverflow.com/questions/3215454/mysql-ifnull-else/23395407#23395407
+        IF(
+            Adoptions.adoption_id IS NOT NULL,
+            "Y",
+            "N"
+        ) AS adopted
+    FROM Pets
+    LEFT JOIN Adoptions
+    ON Pets.pet_id = Adoptions.pet_id
+) AS Pet_Adoptions
+ON Pets.pet_id = Pet_Adoptions.pet_id;
+
+-- Get a single pet.
+SELECT
+    Pets.name,
+    Pets.birthday,
+    Pets.date_arrived,
+    Pets.adoption_cost,
+    Pets.gender,
+    Pets.species_id,
+    Species.name AS species,
+    Pets.location_id,
+    locations.name AS shelter
+FROM Pets
+JOIN Locations
+ON Pets.location_id = Locations.location_id
+JOIN Species
+ON Pets.species_id = Species.species_id
+WHERE Pets.pet_id = @pet_id;
 
 -- Add a new pet.
 -- NOTE: This is a parameterized query.

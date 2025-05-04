@@ -1,0 +1,136 @@
+{{!
+CITATION: This file is adapted from the example on Canvas.
+Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+}}
+<h1>Pets</h1>
+
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each pets.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the data for the pet }}
+        {{#each pets}}
+        <tr>
+            <td>{{this.pet_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.birthday}}</td>
+            <td>{{this.date_arrived}}</td>
+            <td>{{this.adoption_cost}}</td>
+            <td>{{this.gender}}</td>
+            <td>{{this.species}}</td>
+            <td>{{this.shelter}}</td>
+            <td>{{this.adopted}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_pet_form'>
+                <input type='hidden' name='delete_pet_id' value='{{this.pet_id}}' />
+                <input type='hidden' name='delete_pet_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Create a Pet</h2>
+<form class='cuForm' id='create_pet_form'>
+    {{! Name }}
+    <label for='create_pet_name'>Name: </label>
+    <input type='text' name='create_pet_name' id='create_pet_name' required />
+    <br>
+    {{! Birthday }}
+    <label for='create_pet_birthday'>Birthday: </label>
+    <input type='text' name='create_pet_birthday' id='create_pet_birthday' />
+    <br>
+    {{! Date Arrived }}
+    <label for='create_pet_date_arrived'>Date Arrived: </label>
+    <input type='text' name='create_pet_date_arrived' id='create_pet_date_arrived' />
+    <br>
+    {{! Adoption Cost }}
+    <label for='create_pet_adoption_cost'>Adoption Cost: </label>
+    <input type='text' name='create_pet_adoption_cost' id='create_pet_adoption_cost' />
+    <br>
+    {{! Gender }}
+    <label for='create_pet_gender'>Gender:</label>
+    <select name='create_pet_gender' id='create_person_gender' required>
+        <option value='NULL' disabled selected>Select a Gender</option>
+        <option value='M'>M</option>
+        <option value='F'>F</option>
+    </select>
+    <br>
+    {{! Species }}
+    <label for='create_person_species'>Species: </label>
+    <select name='create_person_species' id='create_person_species' required>
+        <option value='NULL' disabled selected>Select a Species</option>
+        {{#each species}}
+        <option value='{{this.species_id}}'>
+            {{this.species_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Locations }}
+    <label for='create_person_locations'>Locations: </label>
+    <select name='create_person_locations' id='create_person_locations' required>
+        <option value='NULL' disabled selected>Select a Location</option>
+        {{#each locations}}
+        <option value='{{this.location_id}}'>
+            {{this.location_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update a Pet</h2>
+<form class='cuForm' id='update_pet_form'>
+    <label for='update_pet_id'>Pet to Update: </label>
+    {{! Pet ID }}
+    <select name='update_pet_id' id='update_pet_id' required>
+        <option value='' disabled selected>Select a Pet</option>
+        {{#each pets}}
+        <option value='{{this.pet_id}}'>
+            {{this.pet_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Location }}
+    <label for='update_person_location'>Location: </label>
+    <select name='update_pet_location' id='update_pet_location'>
+        <option value='NULL' disabled selected>Select a Location</option>
+        {{#each locations}}
+        <option value='{{this.location_id}}'>
+            {{this.location_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    <input type='submit' />
+</form>

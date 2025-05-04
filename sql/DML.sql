@@ -6,6 +6,7 @@
 -- Queries for the List Customers Page
 -- -----------------------------------------------------
 
+-- READ
 -- Get all customers.
 SELECT
     customer_id,
@@ -22,6 +23,7 @@ FROM Customers;
 -- Queries for the List Pets Page
 -- -----------------------------------------------------
 
+-- READ
 -- Get all pets.
 SELECT
     Pets.name,
@@ -72,6 +74,7 @@ JOIN Species
 ON Pets.species_id = Species.species_id
 WHERE Pets.pet_id = @pet_id;
 
+-- CREATE
 -- Add a new pet.
 -- NOTE: This is a parameterized query.
 INSERT INTO Pets (
@@ -93,6 +96,7 @@ VALUES (
     @gender
 );
 
+-- UPDATE
 -- Update a pet.
 -- NOTE: This is a parameterized query.
 UPDATE Pets
@@ -106,6 +110,7 @@ SET
     gender = @gender
 WHERE pet_id = @pet_id;
 
+-- DELETE
 -- Delete a pet.
 -- NOTE: This is a parameterized query.
 DELETE FROM Pets
@@ -115,6 +120,7 @@ WHERE pet_id = @pet_id;
 -- Queries for the List Shelter Locations Page
 -- -----------------------------------------------------
 
+-- READ
 -- Get all shelter locations.
 SELECT
     location_id,
@@ -129,6 +135,7 @@ FROM Locations;
 -- Queries for the List Species Page
 -- -----------------------------------------------------
 
+-- READ
 -- Get all species.
 SELECT
     species_id,
@@ -139,6 +146,7 @@ FROM Species;
 -- Queries for the List Vaccines Page
 -- -----------------------------------------------------
 
+-- READ
 -- Get all vaccines.
 SELECT
     vaccine_id,
@@ -226,6 +234,7 @@ WHERE adoption_id = @adoption_id;
 -- Queries for the List Vaccinations Page
 -- -----------------------------------------------------
 
+-- READ
 -- Get all vaccinations.
 SELECT
     Vaccinations.vaccination_id,
@@ -244,6 +253,7 @@ ON Vaccinations.vaccine_id = Vaccines.vaccine_id;
 -- Beyond MVP
 -- -----------------------------------------------------
 
+-- READ
 -- Get all adopted pets for a given customer.
 -- NOTE: This is a parameterized query.
 SELECT

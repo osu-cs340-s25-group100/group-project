@@ -249,6 +249,58 @@ ON Vaccinations.pet_id = Pets.pet_id
 JOIN Vaccines
 ON Vaccinations.vaccine_id = Vaccines.vaccine_id;
 
+-- CREATE / UPDATE
+-- Queries for dropdown selectors:
+-- Get all pets for dropdown selector.
+SELECT
+    pet_id,
+    name
+FROM Pets;
+
+-- Get all vaccines for dropdown selector.
+SELECT
+    vaccine_id,
+    name
+FROM Vaccines;
+
+-- CREATE
+-- Add a new vaccination.
+-- NOTE: This is a parameterized query.
+INSERT INTO Vaccinations (
+    pet_id,
+    vaccine_id,
+    vaccination_date
+)
+VALUES (
+    @pet_id,
+    @vaccine_id,
+    @vaccination_date
+);
+
+-- UPDATE
+-- Get a single vaccination for update form.
+-- NOTE: This is a parameterized query.
+SELECT
+    vaccination_id,
+    pet_id,
+    vaccine_id,
+    vaccination_date
+FROM Vaccinations
+WHERE vaccination_id = @vaccination_id;
+
+-- Update a vaccination.
+UPDATE Vaccinations
+SET
+    pet_id = @pet_id,
+    vaccine_id = @vaccine_id,
+    vaccination_date = @vaccination_date
+WHERE vaccination_id = @vaccination_id;
+
+-- DELETE
+-- Delete a vaccination.
+DELETE FROM Vaccinations
+WHERE vaccination_id = @vaccination_id;
+
 -- -----------------------------------------------------
 -- Beyond MVP
 -- -----------------------------------------------------

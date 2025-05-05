@@ -1,0 +1,141 @@
+<h1>Pets</h1>
+<div class="homepageDescription">
+    <div id="filterBar"><span id="filter">Any filter stuff here</span> <button>Adopt</button></div>
+    <br />
+    <br />
+    <div id="petTable">
+        <table id="pets">
+            <tr>
+                <td class="petName">Pet Name</td>
+                <td class="petSpecies">Pet Species</td>
+                <td class="petAge">Pet Age</td> <!-- calculated field, uses the pet birthday year -->
+                <td class="petGender">Pet Gender</td>
+                <td class="petVaxStatus">Pet Vaccination Status</td> <!-- calculated field, uses query lookup-->
+                <!-- these TDs will be in the "expand info modal later -->
+                <td class="petBirthday">Pet Birthday</td>
+                <td class="petLocation">Pet Shelter</td>
+                <td class="petArrivalDate">Pet Arrival Date</td>
+                <td cass="petAdoptionCost">Pet Adoption Cost</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+            <tr>
+                <td class="petName">Pet Name</td>
+                <td class="petSpecies">Pet Species</td>
+                <td class="petAge">Pet Age</td> <!-- calculated field, uses the pet birthday year -->
+                <td class="petGender">Pet Gender</td>
+                <td class="petVaxStatus">Pet Vaccination Status</td> <!-- calculated field, uses query lookup-->
+                <!-- these TDs will be in the "expand info modal later -->
+                <td class="petBirthday">Pet Birthday</td>
+                <td class="petLocation">Pet Shelter</td>
+                <td class="petArrivalDate">Pet Arrival Date</td>
+                <td cass="petAdoptionCost">Pet Adoption Cost</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+            <tr>
+                <td class="petName">Pet Name</td>
+                <td class="petSpecies">Pet Species</td>
+                <td class="petAge">Pet Age</td> <!-- calculated field, uses the pet birthday year -->
+                <td class="petGender">Pet Gender</td>
+                <td class="petVaxStatus">Pet Vaccination Status</td> <!-- calculated field, uses query lookup-->
+                <!-- these TDs will be in the "expand info modal later -->
+                <td class="petBirthday">Pet Birthday</td>
+                <td class="petLocation">Pet Shelter</td>
+                <td class="petArrivalDate">Pet Arrival Date</td>
+                <td cass="petAdoptionCost">Pet Adoption Cost</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+            <tr>
+                <td class="petName">Pet Name</td>
+                <td class="petSpecies">Pet Species</td>
+                <td class="petAge">Pet Age</td> <!-- calculated field, uses the pet birthday year -->
+                <td class="petGender">Pet Gender</td>
+                <td class="petVaxStatus">Pet Vaccination Status</td> <!-- calculated field, uses query lookup-->
+                <!-- these TDs will be in the "expand info modal later -->
+                <td class="petBirthday">Pet Birthday</td>
+                <td class="petLocation">Pet Shelter</td>
+                <td class="petArrivalDate">Pet Arrival Date</td>
+                <td cass="petAdoptionCost">Pet Adoption Cost</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+        </table>
+
+        <br />
+        <br />
+        <h3>Add a Pet</h3>
+        <form id="petForm" class="addEntity">
+            <label for="petNameForm">Pet Name</label>
+            <input type="text" name="petNameForm" id="petNameForm" />
+            <label for="petSpeciesForm">Pet Species</label>
+            <input type="text" name="petSpeciesForm" id="petSpeciesForm" />
+            <label for="petBirthdayForm">Pet Birthday</label>
+            <input type="text" name="petBirthdayForm" id="petBirthdayForm" />
+            <label for="petArrivalDateForm">Pet Arrival Date</label>
+            <input type="text" name="petArrivalDateForm" id="petArrivalDateForm" />
+            <label for="petShelterForm">Pet Shelter</label>
+            <input type="text" name="petShelterForm" id="petShelterForm" />
+            <label for="petAdoptionCost">Pet Adoption Cost</label>
+            <input type="text" name="petAdoptionCost" id="petAdoptionCost" />
+            <label for="petGenderForm">Pet Gender</label>
+            <input type="text" name="petGenderForm" id="petGenderForm" />
+        </form>
+        <button type="submit" id="petSubmit">submit</button>
+
+        <h3>Adopt a Pet</h3>
+        <p>This will ultimately be a "modal" operation in the final version. Works like a popup.</p>
+        <form id="adoptForm" class="addEntity">
+            <label for="adoptPet">Pet Name</label>
+            <input type="text" name="adoptPet" id="adoptPet" />
+            <label for="adoptCustomer">CustomerName</label>
+            <input type="text" name="adoptCustomer" id="adoptCustomer" />
+            <label for="adoptDate">AdoptionDate</label>
+            <input type="text" name="adoptDate" id="adoptDate" />
+        </form>
+        <button type="submit" id="adoptSubmit">submit</button>
+
+        <h2>Vaccinations</h2>
+        <p>The "Expand Info" sections will handle the vaccinations listings in the final version. For now, they will be listed here</p>
+        <table id="vaccinations">
+            <tr>
+                <td class="vaccinationPet">Pet Name</td>
+                <td class="vaccinationVaccine">Vaccine Name</td>
+                <td class="vaccinationDate">Vaccine Date</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">Delete</a></td>
+            </tr>
+            <tr>
+                <td class="vaccinationPet">Pet Name</td>
+                <td class="vaccinationVaccine">Vaccine Name</td>
+                <td class="vaccinationDate">Vaccine Date</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">Delete</a></td>
+            </tr>
+            <tr>
+                <td class="vaccinationPet">Pet Name</td>
+                <td class="vaccinationVaccine">Vaccine Name</td>
+                <td class="vaccinationDate">Vaccine Date</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">Delete</a></td>
+            </tr>
+            <tr>
+                <td class="vaccinationPet">Pet Name</td>
+                <td class="vaccinationVaccine">Vaccine Name</td>
+                <td class="vaccinationDate">Vaccine Date</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">Delete</a></td>
+            </tr>
+        </table>
+
+        <h3>Add a Vaccination</h3>
+        <p>This will ultimately be a "modal" operation in the final version. Works like a popup.</p>
+        <form id="vaccinationForm" class="addEntity">
+            <label for="vaccinationPet ">Pet Name</label>
+            <input type="text" name="vaccinationPet" id="vaccinationPet" />
+            <label for="vaccinationVaccine">Vaccine Name</label>
+            <input type="text" name="vaccinationVaccine" id="vaccinationVaccine" />
+            <label for="vaccineDate">Vaccination Date</label>
+            <input type="text" name="vaccineDate" id="vaccineDate" />
+        </form>
+        <button type="submit" id="vaccinationSubmit">submit</button>
+
+    </div>
+</div>

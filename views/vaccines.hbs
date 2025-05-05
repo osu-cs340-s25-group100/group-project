@@ -1,0 +1,22 @@
+<h1>Vaccines </h1>
+<div class="homepageDescription">
+    <div id="filterBar"><!-- empty on purpose --> </div>
+
+    <div id="vaccineTable">
+        <!-- we'll use a unorder list for now since the entity is a very small table: primary key and vaccine name -->
+        <ul>
+            <li>Vaccine A</li>
+            <li>Vaccine B</li>
+            <li>Vaccine C</li>
+        </ul>
+
+        <br />
+        <br />
+        <h3>Add a Vaccine</h3>
+        <form id="vaccineForm" class="addEntity">
+            <label for="vaccineName">Vaccine Name</label>
+            <input type="text" name="vaccineName" id="vaccineName" />
+        </form>
+        <button type="submit" id="vaccineSubmit">submit</button>
+    </div>
+</div>

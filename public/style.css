@@ -1,0 +1,61 @@
+/* css from the course module: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948 */
+
+h1, h2 { margin-left: 16px;}
+table {border-collapse: collapse;margin-left: 32px;}
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+th {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #f9f9f9;}
+.cuForm { margin-left: 32px;}
+input, select { margin-bottom: 4px;margin-right: 12px;}
+
+a {margin-left: 16px;}
+.homepageDescription {margin-left: 32px;}
+
+/* our own css */
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+nav{
+    padding: 16px;
+}
+
+#hero-spacer{
+    width: 100%;
+    height: 50px;
+    background-color: grey;
+}
+
+main{
+    width: 1000px;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-bottom: 75px;
+}
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: grey;
+    height: 50px;
+    color: white;
+}
+
+footer p{
+    width: 100%;
+    text-align: center;
+}

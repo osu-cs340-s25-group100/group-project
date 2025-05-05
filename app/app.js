@@ -18,9 +18,6 @@ app.use(express.static('public'));
 require('dotenv').config();
 const PORT =  process.env.PORT;
 
-// Database
-const db = require('./database/db-connector');
-
 // Handlebars
 const { engine } = require('express-handlebars'); // Import express-handlebars engine
 app.engine('.hbs', engine({ extname: '.hbs' })); // Create instance of handlebars

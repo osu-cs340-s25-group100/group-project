@@ -29,7 +29,7 @@ app.set('view engine', '.hbs'); // Use handlebars engine for *.hbs files.
 // Routes
 app.use('/pets', require('./routes/petRoutes'));
 app.use('/customers', require('./routes/customerRoutes'));
-app.use('/locations', require('./routes/locationRoutes'));
+app.use('/shelters', require('./routes/shelterRoutes'));
 app.use('/species', require('./routes/speciesRoutes'));
 app.use('/adoptions', require('./routes/adoptionRoutes'));
 app.use('/vaccinations', require('./routes/vaccinationRoutes'));

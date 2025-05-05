@@ -4,7 +4,7 @@ const db = require('../database/db-connector');
 
 router.get('/', async function (req, res) {
     try {
-        res.render('locations'); // Render the locations.hbs file
+        res.render('shelters'); // Render the shelters.hbs file
     } catch (error) {
         console.error('Error rendering page:', error);
         // Send a generic error message to the browser

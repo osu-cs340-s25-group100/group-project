@@ -1,3 +1,57 @@
-<h1>Customers</h1>
+<h1>Customers </h1>
+<div class="homepageDescription">
+    <div id="filterBar"><span id="filter">Any filter stuff here</span> </div>
+    <br />
+    <br />
+    <div id="customerTable">
+        <table id="customers">
+            <tr>
+                <td class="customerName">Customer Name</td>
+                <td class="customerAddr">Customer Address</td>
+                <td class="customerPhone">Customer Phone Number</td>
+                <td class="customerEmail">Customer Email Address</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+            <tr>
+                <td class="customerName">Customer Name</td>
+                <td class="customerAddr">Customer Address</td>
+                <td class="customerPhone">Customer Phone Number</td>
+                <td class="customerEmail">Customer Email Address</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+            <tr>
+                <td class="customerName">Customer Name</td>
+                <td class="customerAddr">Customer Address</td>
+                <td class="customerPhone">Customer Phone Number</td>
+                <td class="customerEmail">Customer Email Address</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+            <tr>
+                <td class="customerName">Customer Name</td>
+                <td class="customerAddr">Customer Address</td>
+                <td class="customerPhone">Customer Phone Number</td>
+                <td class="customerEmail">Customer Email Address</td>
+                <td class="CRUD"><a href="#">EDIT</a> | <a href="#">DELETE</a></td>
+                <td class="expand">Expand Info >></td>
+            </tr>
+        </table>
 
-<p>This page displays the details of the customers.</p>
+        <br />
+        <br />
+        <h3>Add Customer</h3>
+        <form id="customerForm" class="addEntity">
+            <label for="customerName">Customer Name</label>
+            <input type="text" name="customerName" id="customerName" />
+            <label for="customerAddr">Customer Address</label> <!-- this needs to be broken out -->
+            <input type="text" name="customerAddr" id="customerAddr" />
+            <label for="customerPhone">Customer Phone</label>
+            <input type="text" name="customerPhone" id="customerPhone" />
+            <label for="customerEmail">Customer Email Address</label>
+            <input type="text" name="customerEmail" id="customerEmail" />
+        </form>
+        <button type="submit" id="customerSubmit">submit</button>
+    </div>
+</div>

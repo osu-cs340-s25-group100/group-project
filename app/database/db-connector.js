@@ -13,11 +13,11 @@ require('dotenv').config();
 // NOTE: This was changed to use an .env file.
 const pool = mysql.createPool({
     waitForConnections: true,
-    connectionLimit   : process.env.CONNECTION_LIMIT || 10,
-    host              : process.env.HOST,
-    user              : process.env.USER,
-    password          : process.env.PASSWORD,
-    database          : process.env.NAME
+    connectionLimit   : process.env.DB_CONNECTION_LIMIT,
+    host              : process.env.DB_HOST,
+    user              : process.env.DB_USER,
+    password          : process.env.DB_PASSWORD,
+    database          : process.env.DB_NAME
 }).promise(); // This makes it so we can use async / await rather than callbacks
 
 // Export it for use in our application

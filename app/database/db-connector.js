@@ -1,16 +1,17 @@
 /**
- * CITATION: Everything in this file is copied from the example on Canvas
- * unless otherwise noted.
+ * CITATION:
+ * The code in this file is adapted from the Node.js example on Canvas.
+ * The credentials were moved into an .env.
  * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
  */
 
 // Get an instance of mysql we can use in the app
 let mysql = require('mysql2')
-// NOTE: This line was added to use an .env file.
+
+// Environmental variables
 require('dotenv').config();
 
-// Create a 'connection pool' using the provided credentials
-// NOTE: This was changed to use an .env file.
+// Create a 'connection pool' using credentials from .env file
 const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit   : process.env.DB_CONNECTION_LIMIT,

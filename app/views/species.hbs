@@ -1,3 +1,28 @@
+{{!
+CITATION: This file is adapted from the example on Canvas.
+Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+}}
 <h1>Species</h1>
 
-<p>This page displays the types of pets.</p>
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each species.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the data for the species }}
+        {{#each species}}
+        <tr>
+            <td>{{this.species_id}}</td>
+            <td>{{this.name}}</td>
+        {{/each}}
+    </tbody>
+</table>

@@ -14,7 +14,6 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
                 {{@key}}
             </th>
             {{/each}}
-            <th></th>
         </tr>
     </thead>
 
@@ -28,18 +27,6 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
             <td>{{this.city}}</td>
             <td>{{this.state}}</td>
             <td>{{this.zip}}</td>
-
-            {{! DELETE form }}
-            <form id='delete_pet_form'>
-                <input type='hidden' name='delete_pet_id' value='{{this.pet_id}}' />
-                <input type='hidden' name='delete_pet_name' value='{{this.name}}' />
-                <td>
-                    <button type='submit'>
-                        Delete
-                    </button>
-                </td>
-            </form>
-        </tr>
         {{/each}}
     </tbody>
 </table>

@@ -1,22 +1,28 @@
-<h1>Vaccines </h1>
-<div class="homepageDescription">
-    <div id="filterBar"><!-- empty on purpose --> </div>
+{{!
+CITATION: This file is adapted from the example on Canvas.
+Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+}}
+<h1>Vaccines</h1>
 
-    <div id="vaccineTable">
-        <!-- we'll use a unorder list for now since the entity is a very small table: primary key and vaccine name -->
-        <ul>
-            <li>Vaccine A</li>
-            <li>Vaccine B</li>
-            <li>Vaccine C</li>
-        </ul>
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each vaccines.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
 
-        <br />
-        <br />
-        <h3>Add a Vaccine</h3>
-        <form id="vaccineForm" class="addEntity">
-            <label for="vaccineName">Vaccine Name</label>
-            <input type="text" name="vaccineName" id="vaccineName" />
-        </form>
-        <button type="submit" id="vaccineSubmit">submit</button>
-    </div>
-</div>
+    <tbody>
+        {{! For each row, print the data for the pet }}
+        {{#each vaccines}}
+        <tr>
+            <td>{{this.vaccine_id}}</td>
+            <td>{{this.name}}</td>
+        {{/each}}
+    </tbody>
+</table>

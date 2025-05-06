@@ -68,15 +68,15 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
     <br>
     {{! Gender }}
     <label for='create_pet_gender'>Gender:</label>
-    <select name='create_pet_gender' id='create_person_gender' required>
+    <select name='create_pet_gender' id='create_pet_gender' required>
         <option value='NULL' disabled selected>Select a Gender</option>
         <option value='M'>M</option>
         <option value='F'>F</option>
     </select>
     <br>
     {{! Species }}
-    <label for='create_person_species'>Species: </label>
-    <select name='create_person_species' id='create_person_species' required>
+    <label for='create_pet_species'>Species: </label>
+    <select name='create_pet_species' id='create_pet_species' required>
         <option value='NULL' disabled selected>Select a Species</option>
         {{#each species}}
         <option value='{{this.species_id}}'>
@@ -88,8 +88,8 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
     </select>
     <br>
     {{! Locations }}
-    <label for='create_person_locations'>Locations: </label>
-    <select name='create_person_locations' id='create_person_locations' required>
+    <label for='create_pet_locations'>Locations: </label>
+    <select name='create_pet_locations' id='create_pet_locations' required>
         <option value='NULL' disabled selected>Select a Location</option>
         {{#each locations}}
         <option value='{{this.location_id}}'>
@@ -120,7 +120,7 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
     </select>
     <br>
     {{! Location }}
-    <label for='update_person_location'>Location: </label>
+    <label for='update_pet_location'>Location: </label>
     <select name='update_pet_location' id='update_pet_location'>
         <option value='NULL' disabled selected>Select a Location</option>
         {{#each locations}}

@@ -55,12 +55,12 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
     <input type='text' name='create_pet_name' id='create_pet_name' required />
     <br>
     {{! Birthday }}
-    <label for='create_pet_birthday'>Birthday: </label>
-    <input type='text' name='create_pet_birthday' id='create_pet_birthday' />
+    <label for="create_pet_birthday">Birthday: </label>
+    <input type="date" id="create_pet_birthday" name="create_pet_birthday">
     <br>
     {{! Date Arrived }}
-    <label for='create_pet_date_arrived'>Date Arrived: </label>
-    <input type='text' name='create_pet_date_arrived' id='create_pet_date_arrived' />
+    <label for="create_pet_date_arrived">Date Arrived: </label>
+    <input type="date" id="create_pet_date_arrived" name="create_pet_date_arrived">
     <br>
     {{! Adoption Cost }}
     <label for='create_pet_adoption_cost'>Adoption Cost: </label>
@@ -88,8 +88,8 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
     </select>
     <br>
     {{! Locations }}
-    <label for='create_pet_locations'>Locations: </label>
-    <select name='create_pet_locations' id='create_pet_locations' required>
+    <label for='create_pet_location'>Location: </label>
+    <select name='create_pet_location' id='create_pet_location' required>
         <option value='NULL' disabled selected>Select a Location</option>
         {{#each locations}}
         <option value='{{this.location_id}}'>
@@ -119,9 +119,42 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
         {{/each}}
     </select>
     <br>
-    {{! Location }}
+    {{! Birthday }}
+    <label for="update_pet_birthday">Birthday: </label>
+    <input type="date" id="updatepet_birthday" name="update_pet_birthday">
+    <br>
+    {{! Date Arrived }}
+    <label for="update_pet_date_arrived">Date Arrived: </label>
+    <input type="date" id="update_pet_date_arrived" name="update_pet_date_arrived">
+    <br>
+    {{! Adoption Cost }}
+    <label for='update_pet_adoption_cost'>Adoption Cost: </label>
+    <input type='text' name='update_pet_adoption_cost' id='update_pet_adoption_cost' />
+    <br>
+    {{! Gender }}
+    <label for='update_pet_gender'>Gender:</label>
+    <select name='update_pet_gender' id='update_pet_gender' required>
+        <option value='NULL' disabled selected>Select a Gender</option>
+        <option value='M'>M</option>
+        <option value='F'>F</option>
+    </select>
+    <br>
+    {{! Species }}
+    <label for='update_pet_species'>Species: </label>
+    <select name='update_pet_species' id='update_pet_species' required>
+        <option value='NULL' disabled selected>Select a Species</option>
+        {{#each species}}
+        <option value='{{this.species_id}}'>
+            {{this.species_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Locations }}
     <label for='update_pet_location'>Location: </label>
-    <select name='update_pet_location' id='update_pet_location'>
+    <select name='update_pet_location' id='update_pet_location' required>
         <option value='NULL' disabled selected>Select a Location</option>
         {{#each locations}}
         <option value='{{this.location_id}}'>

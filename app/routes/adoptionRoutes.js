@@ -2,13 +2,56 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database/db-connector');
 
+// NOTE: GET Adoptions endpoint is adapted from GET bsg-people endpoint in example code.
 router.get('/', async function (req, res) {
     try {
-        res.render('adoptions'); // Render the adoptions.hbs file
+        // Get all adoptions.
+        const adoptions_query = `
+        SELECT
+            Adoptions.adoption_id,
+            Adoptions.customer_id,
+            Customers.name AS customer_name,
+            Adoptions.pet_id,
+            Pets.name AS pet_name,
+            DATE_FORMAT(Adoptions.adoption_date, '%m/%d/%Y') AS adoption_date
+        FROM Adoptions
+        JOIN Customers
+        ON Adoptions.customer_id = Customers.customer_id
+        JOIN
+        Pets
+        ON Adoptions.pet_id = Pets.pet_id;`;
+
+        const customers_query = `
+        SELECT
+            customer_id,
+            name
+        FROM Customers;
+        `;
+
+        const unadopted_pets_query = `
+        SELECT
+            pet_id,
+            name
+        FROM Pets
+        WHERE pet_id NOT IN
+        -- Subquery for ids of already adopted pets
+        (
+            SELECT pet_id
+            FROM Adoptions
+        );`;
+
+        const [adoptions] = await db.query(adoptions_query);
+        const [customers] = await db.query(customers_query);
+        const [unadopted_pets] = await db.query(unadopted_pets_query);
+
+        // Render adoptions.hbs
+        res.render('adoptions', { adoptions, customers, unadopted_pets });
     } catch (error) {
-        console.error('Error rendering page:', error);
+        console.error('Error executing queries:', error);
         // Send a generic error message to the browser
-        res.status(500).send('An error occurred while rendering the page.');
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
     }
 });
 

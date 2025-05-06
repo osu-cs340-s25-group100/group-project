@@ -1,3 +1,129 @@
+{{!
+CITATION: This file is adapted from the example on Canvas.
+Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+}}
 <h1>Adoptions</h1>
 
-<p>This page displays the adoptions of pets by customers. Adoptions can be created, updated, and deleted.</p>
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each adoptions.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the data for the adoption }}
+        {{#each adoptions}}
+        <tr>
+            <td>{{this.adoption_id}}</td>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.customer_name}}</td>
+            <td>{{this.pet_id}}</td>
+            <td>{{this.pet_name}}</td>
+            <td>{{this.adoption_date}}</td>
+
+            {{! DELETE form }}
+            <form id='delete_adoption_form'>
+                <input type='hidden' name='delete_adoption_id' value='{{this.pet_id}}' />
+                <input type='hidden' name='delete_adoption_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Create an Adoption</h2>
+<form class='cuForm' id='create_adoption_form'>
+    {{! Customer }}
+    <label for='create_adoption_customer'>Customer: </label>
+    <select name='create_adoption_customer' id='create_adoption_customer' required>
+        <option value='NULL' disabled selected>Select a Customer</option>
+        {{#each customers}}
+        <option value='{{this.customer_id}}'>
+            {{this.customer_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Pet }}
+    <label for='create_adoption_pet'>Pet: </label>
+    <select name='create_adoption_petr' id='create_adoption_pet' required>
+        <option value='NULL' disabled selected>Select a Pet</option>
+        {{#each unadopted_pets}}
+        <option value='{{this.pet_id}}'>
+            {{this.pet_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Adoption Date }}
+    <label for="create_adoption_date">Date: </label>
+    <input type="date" id="create_adoption_date" name="create_adoption_date">
+    <br>
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update an Adoption</h2>
+<form class='cuForm' id='update_adoption_form'>
+    <label for='update_adoption_id'>Adoption to Update: </label>
+    {{! Adoption ID }}
+    <select name='update_adoption_id' id='update_adoption_id' required>
+        <option value='' disabled selected>Select an Adoption</option>
+        {{#each adoptions}}
+        <option value='{{this.adoption_id}}'>
+            {{this.adoption_id}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Customer }}
+    <label for='update_adoption_customer'>Customer: </label>
+    <select name='update_adoption_customer' id='update_adoption_customer' required>
+        <option value='NULL' disabled selected>Select a Customer</option>
+        {{#each customers}}
+        <option value='{{this.customer_id}}'>
+            {{this.customer_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Pet }}
+    <label for='update_adoption_pet'>Pet: </label>
+    <select name='update_adoption_petr' id='update_adoption_pet' required>
+        <option value='NULL' disabled selected>Select a Pet</option>
+        {{#each unadopted_pets}}
+        <option value='{{this.pet_id}}'>
+            {{this.pet_id}}
+            -
+            {{this.name}}
+        </option>
+        {{/each}}
+    </select>
+    <br>
+    {{! Adoption Date }}
+    <label for="update_adoption_date">Date: </label>
+    <input type="date" id="update_adoption_date" name="update_adoption_date">
+    <br>
+    <br>
+    <input type='submit' />
+</form>

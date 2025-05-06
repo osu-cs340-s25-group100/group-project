@@ -19,6 +19,48 @@ SELECT
     email
 FROM Customers;
 
+-- CREATE
+-- Add a new customer.
+-- NOTE: This is a parameterized query.
+INSERT INTO Customers (
+    name,
+    address,
+    city,
+    state,
+    zip,
+    phone,
+    email
+)
+VALUES ( 
+    @name,
+    @address,
+    @city,
+    @state,
+    @zip,
+    @phone,
+    @email
+);
+
+-- UPDATE
+-- Update a customer.
+-- NOTE: This is a parameterized query.
+UPDATE Customers
+SET
+    name = @name,
+    address = @address,
+    city = @city,
+    state = @state,
+    zip = @zip,
+    phone = @phone,
+    email = @email
+WHERE customer_id = @customer_id;
+
+-- DELETE
+-- Delete a customer.
+-- NOTE: This is a parameterized query.
+DELETE FROM Customers
+WHERE customer_id = @customer_id;
+
 -- -----------------------------------------------------
 -- Queries for the List Pets Page
 -- -----------------------------------------------------

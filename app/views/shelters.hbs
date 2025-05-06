@@ -1,68 +1,45 @@
-<h1>Shelters </h1>
-<div class="homepageDescription">
-    <div id="filterBar"><span id="filter">Any filter stuff here</span> </div>
-    <br />
-    <br />
-    <div id="shelterTable">
-        <table id="shelters">
-            <tr>
-                <td class="shelterName">Shelter Name</td>
-                <td class="shelterAddr">Shelter Address</td>
-                <td class="shelterNav"><a href="/pets">Go to Shelter Pets --></a></td> <!-- this will have the ability to send with a shelter Primary key for CRUD operations -->
-            </tr>
-            <tr>
-                <td class="shelterName">Shelter Name</td>
-                <td class="shelterAddr">Shelter Address</td>
-                <td class="shelterNav"><a href="/pets">Go to Shelter Pets --></a></td>
-            </tr>
-            <tr>
-                <td class="shelterName">Shelter Name</td>
-                <td class="shelterAddr">Shelter Address</td>
-                <td class="shelterNav"><a href="/pets">Go to Shelter Pets --></a></td>
-            </tr>
-            <tr>
-                <td class="shelterName">Shelter Name</td>
-                <td class="shelterAddr">Shelter Address</td>
-                <td class="shelterNav"><a href="/pets">Go to Shelter Pets --></a></td>
-            </tr>
-        </table>
+{{!
+CITATION: This file is adapted from the example on Canvas.
+Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+}}
+<h1>Shelters</h1>
 
-        <br />
-        <br />
+{{! READ table }}
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            {{#each shelters.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
 
-        <h1> Species</h1>
-        <p>A list of all the kinds of pets we accept at the shelters!</p>
-        <div id="speciesTable">
-            <ul>
-                <li>Species A</li>
-                <li>Species B</li>
-                <li>Species C</li>
-            </ul>
+    <tbody>
+        {{! For each row, print the data for the pet }}
+        {{#each shelters}}
+        <tr>
+            <td>{{this.location_id}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.address}}</td>
+            <td>{{this.city}}</td>
+            <td>{{this.state}}</td>
+            <td>{{this.zip}}</td>
 
-        <h1> Adoptions</h1>
-        <div id="adoptionsTable">
-            <table id="adoptions">
-                <tr>
-                    <td class="adoptedPet">Pet Name</td>
-                    <td class="adoptedByCustomer">Customer Name</td>
-                    <td class="adoptedDate">Adoption Date</td>
-                </tr>
-                <tr>
-                    <td class="adoptedPet">Pet Name</td>
-                    <td class="adoptedByCustomer">Customer Name</td>
-                    <td class="adoptedDate">Adoption Date</td>
-                </tr>
-                <tr>
-                    <td class="adoptedPet">Pet Name</td>
-                    <td class="adoptedByCustomer">Customer Name</td>
-                    <td class="adoptedDate">Adoption Date</td>
-                </tr>
-                <tr>
-                    <td class="adoptedPet">Pet Name</td>
-                    <td class="adoptedByCustomer">Customer Name</td>
-                    <td class="adoptedDate">Adoption Date</td>
-                </tr>
-            </table>
-
-    </div>
-</div>
+            {{! DELETE form }}
+            <form id='delete_pet_form'>
+                <input type='hidden' name='delete_pet_id' value='{{this.pet_id}}' />
+                <input type='hidden' name='delete_pet_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

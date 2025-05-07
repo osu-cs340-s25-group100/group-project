@@ -4,6 +4,7 @@ Cassandra Fleming and Paul Meleason
 */
 
 -- Note: Used forward engineering as starting point and modified as needed.
+-- No AI was used.
 
 -- Included these lines suggested on Canvas:
 SET FOREIGN_KEY_CHECKS=0;

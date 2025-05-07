@@ -1,8 +1,4 @@
-/*
-Group 100
-Cassandra Fleming and Paul Meleason
-*/
-
+-- Group 100: Cassandra Fleming and Paul Meleason
 -- Note: Used forward engineering as starting point and modified as needed.
 -- No AI was used.
 

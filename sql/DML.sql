@@ -2,6 +2,8 @@
 -- Citations: Used the DML file provided on Canvas as reference.
 -- No AI was used.
 
+-- NOTE: The symbol @ is being used to denote variables in parameterized queries throughout.
+
 -- -----------------------------------------------------
 -- Queries for the List Customers Page
 -- -----------------------------------------------------

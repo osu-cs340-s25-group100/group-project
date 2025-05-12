@@ -1,20 +1,125 @@
 /**
- * CITATION: Everything in this file is copied from the example on Canvas
- * unless otherwise noted.
+ * CITATION:
+ * The CSS in this file is adapted from the Node.js example on Canvas.
  * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
  */
 
-h1, h2 { margin-left: 16px;}
-table {border-collapse: collapse;margin-left: 32px;}
+/****************************************************** universal styling ********************/
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+footer{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightblue;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+table {
+    border-collapse: collapse;
+    margin-left: 20px;
+}
+
 th, td {
-    border: 1px solid #ddd;
+    border: 1px solid black;
     padding: 12px;
     text-align: center;
 }
-th {background-color: #f2f2f2;}
-tr:nth-child(even) {background-color: #f9f9f9;}
-.cuForm { margin-left: 32px;}
-input, select { margin-bottom: 4px;margin-right: 12px;}
-nav {background-color: #cecece;padding: 16px;}
-a {margin-left: 16px;}
-.homepageDescription {margin-left: 32px;}
+
+th {
+    background-color: #B0E0E6;
+}
+
+tr:nth-child(even) {
+    background-color: #B0E0E6;
+}
+
+.cuForm {
+    margin-left: 32px;
+}
+
+input, select {
+    margin-bottom: 4px;
+    margin-right: 12px;
+}
+
+nav {
+    padding: 16px;
+}
+
+
+
+.m0 {
+    margin: 0;
+}
+
+.py3 {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+/***************************************************** custom styling for main.hbs ****/
+
+nav a {
+    margin-left: 16px;
+}
+
+nav{
+    padding-right: 50px;
+}
+
+header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1{
+    padding-left: 50px;
+}
+
+#hero-spacer{
+    width: 100%;
+    height: 50px;
+    display: block;
+    background-color: lightblue;
+    padding: 0px;
+    margin: 0px;
+}
+
+#content{
+    margin: 50px;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.citation{
+    font-size: 11px;
+}
+
+/**************************** home page css */
+#home-content{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#welcome-message, #site-message{
+    width: 50%;
+}

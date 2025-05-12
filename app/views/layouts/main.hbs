@@ -1,7 +1,7 @@
 {{!
-CITATION: Everything in this file is copied from the example on Canvas
-unless otherwise noted.
-Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
+ * CITATION:
+ * The code in this file is adapted from the Node.js example on Canvas.
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948
 }}
 <!DOCTYPE html>
 <html>
@@ -11,19 +11,31 @@ Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-appli
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        Navigation: 
-        <a href="/">Home</a>
-        <a href="/pets">Pets</a>
-        <a href="/adoptions">Adoptions</a>
-        <a href="/vaccinations">Vaccinations</a>
-        <a href="/customers">Customers</a>
-        <a href="/vaccines">Vaccines</a>
-        <a href="/shelters">Shelters</a>
-        <a href="/species">Species</a>
-    </nav>
+<div id="container">
+    <header>
+        <h1>Forever Home</h1>
+        <nav>
+            Navigation:
+            <a href="/">Home</a>
+            <a href="/pets">Pets</a>
+            <a href="/adoptions">Adoptions</a>
+            <a href="/vaccinations">Vaccinations</a>
+            <a href="/customers">Customers</a>
+            <a href="/shelters">Shelters</a>
+        </nav>
 
-    {{{body}}}
+    </header>
 
+    <span id="hero-spacer"></span>
+
+    <div id="content">
+        {{{body}}}
+    </div>
+
+
+    <footer>
+        <p><a href="#">about</a> | <a href="#">reference</a> | (c) 2025 Paul & Cas</p>
+    </footer>
+</div>
 </body>
 </html>

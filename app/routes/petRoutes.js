@@ -64,4 +64,42 @@ router.get('/', async function (req, res) {
     }
 });
 
+/**
+ * Citation: Code for CREATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// CREATE ROUTE
+router.post("/create", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_pet_species)))
+            data.create_pet_species = null;
+        if (isNaN(parseInt(data.create_pet_location)))
+            data.create_pet_location = null;
+
+        const query = `CALL sp_CreatePet(?, ?, ?, ?, ?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query, [
+            data.create_pet_species,
+            data.create_pet_location,
+            data.create_pet_name,
+            data.create_pet_birthday,
+            data.create_pet_date_arrived,
+            data.create_pet_adoption_cost,
+            data.create_pet_gender
+        ]);
+
+        console.log(`CREATE Pets. ID: ${rows.new_id} ` + `Name: ${data.create_pet_name}`);
+
+        res.redirect('/pets');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+
+});
+
 module.exports = router;

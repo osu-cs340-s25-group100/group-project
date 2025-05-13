@@ -47,7 +47,7 @@
 
 {{! CREATE form }}
 <h2>Create a Vaccination</h2>
-<form class='cuForm' id='create_vaccination_form'>
+<form class='cuForm' id='create_vaccination_form' method='POST' action='/vaccinations/create'>
     {{! Pets }}
     <label for='create_vaccination_pet'>Pets: </label>
     <select name='create_vaccination_pet' id='create_vaccination_pet' required>

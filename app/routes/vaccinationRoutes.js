@@ -54,4 +54,37 @@ router.get('/', async function (req, res) {
     }
 });
 
+/**
+ * Citation: Code for CREATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// CREATE ROUTE
+router.post("/create", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_vaccination_pet)))
+            data.create_vaccination_pet = null;
+        if (isNaN(parseInt(data.create_vaccination_vaccine)))
+            data.create_vaccination_vaccine = null;
+
+        const query = `CALL sp_CreateVaccination(?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query, [
+            data.create_vaccination_pet,
+            data.create_vaccination_vaccine,
+            data.create_vaccination_date
+        ]);
+
+        console.log(`CREATE Vaccinations. ID: ${rows.new_id} ` + `Pet ID: ${data.create_vaccination_pet}` + `Vaccine ID: ${data.create_vaccination_vaccine}` + `Vaccination Date: ${data.create_vaccination_date}`);
+
+        res.redirect('/vaccinations');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
 module.exports = router;

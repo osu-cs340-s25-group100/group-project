@@ -141,4 +141,30 @@ router.post("/update", async function (req, res) {
     }
 });
 
+/**
+ * Citation: Code for DELETE route is from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// DELETE ROUTE
+router.post('/delete', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const deleteQuery = `CALL sp_DeletePet(?);`;
+        await db.query(deleteQuery, [data.delete_pet_id]);
+
+        console.log(`DELETE Pets. ID: ${data.delete_pet_id} ` +
+            `Name: ${data.delete_pet_name}`
+        );
+
+        res.redirect('/pets');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        // Send a generic error message to the browser
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
 module.exports = router;

@@ -70,3 +70,18 @@ BEGIN
     WHERE pet_id = pet_pet_id;
 END //
 DELIMITER ;
+
+-- Citation: DELETE code is adapted from Canvas, CS 340 Module 8
+-- Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
+-- -----------------------------------------------------
+-- DELETE Pets
+-- -----------------------------------------------------
+DROP PROCEDURE IF EXISTS DeletePet;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeletePet(IN pet_pet_id INT)
+BEGIN
+    DELETE FROM Pets WHERE pet_id = pet_pet_id;
+END //
+DELIMITER ;

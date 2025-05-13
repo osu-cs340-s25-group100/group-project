@@ -106,7 +106,7 @@
 
 {{! UPDATE form }}
 <h2>Update a Pet</h2>
-<form class='cuForm' id='update_pet_form'>
+<form class='cuForm' id='update_pet_form' method='POST' action='/pets/update'>
     <label for='update_pet_id'>Pet to Update: </label>
     {{! Pet ID }}
     <select name='update_pet_id' id='update_pet_id' required>
@@ -119,6 +119,10 @@
         </option>
         {{/each}}
     </select>
+    <br>
+    {{! Name }}
+    <label for='update_pet_name'>Name: </label>
+    <input type='text' name='update_pet_name' id='update_pet_name' required />
     <br>
     {{! Birthday }}
     <label for="update_pet_birthday">Birthday: </label>

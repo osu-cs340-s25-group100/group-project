@@ -99,7 +99,46 @@ router.post("/create", async function (req, res) {
             'An error occurred while executing the database queries.'
         );
     }
+});
 
+/**
+ * Citation: Code for UPDATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// UPDATE ROUTE
+router.post("/update", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_pet_species)))
+            data.create_pet_species = null;
+        if (isNaN(parseInt(data.create_pet_location)))
+            data.create_pet_location = null;
+
+        const updateQuery = `CALL sp_UpdatePet(?, ?, ?, ?, ?, ?, ?, ?);`;
+        const selectQuery = `SELECT name FROM Pets WHERE pet_id = ?;`;
+
+        await db.query(updateQuery, [
+            data.update_pet_id,
+            data.update_pet_species,
+            data.update_pet_location,
+            data.update_pet_name,
+            data.update_pet_birthday,
+            data.update_pet_date_arrived,
+            data.update_pet_adoption_cost,
+            data.update_pet_gender
+        ]);
+        const [[rows]] = await db.query(selectQuery, [data.update_pet_id]);
+
+        console.log(`UPDATE Pets. ID: ${data.update_pet_id} ` + `Name: ${rows.update_pet_name}`);
+
+        res.redirect('/pets');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
 });
 
 module.exports = router;

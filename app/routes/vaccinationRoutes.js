@@ -25,7 +25,8 @@ router.get('/', async function (req, res) {
         JOIN Pets
         ON Vaccinations.pet_id = Pets.pet_id
         JOIN Vaccines
-        ON Vaccinations.vaccine_id = Vaccines.vaccine_id;`;
+        ON Vaccinations.vaccine_id = Vaccines.vaccine_id
+        ORDER BY vaccination_id ASC;`;
 
         const pets_query =
         `SELECT

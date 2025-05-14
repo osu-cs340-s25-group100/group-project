@@ -47,7 +47,7 @@
 
 {{! CREATE form }}
 <h2>Create an Adoption</h2>
-<form class='cuForm' id='create_adoption_form'>
+<form class='cuForm' id='create_adoption_form' method='POST' action='/adoptions/create'>
     {{! Customer }}
     <label for='create_adoption_customer'>Customer: </label>
     <select name='create_adoption_customer' id='create_adoption_customer' required>
@@ -63,7 +63,7 @@
     <br>
     {{! Pet }}
     <label for='create_adoption_pet'>Pet: </label>
-    <select name='create_adoption_petr' id='create_adoption_pet' required>
+    <select name='create_adoption_pet' id='create_adoption_pet' required>
         <option value='NULL' disabled selected>Select a Pet</option>
         {{#each unadopted_pets}}
         <option value='{{this.pet_id}}'>

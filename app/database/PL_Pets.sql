@@ -77,7 +77,7 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- DELETE Pets
 -- -----------------------------------------------------
-DROP PROCEDURE IF EXISTS DeletePet;
+DROP PROCEDURE IF EXISTS sp_DeletePet;
 
 DELIMITER //
 CREATE PROCEDURE sp_DeletePet(IN pet_pet_id INT)

@@ -49,3 +49,19 @@ BEGIN
     WHERE vaccination_id = vaccination_vaccination_id;
 END //
 DELIMITER ;
+
+-- Citation: DELETE code is adapted from Canvas, CS 340 Module 8
+-- Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
+-- -----------------------------------------------------
+-- DELETE Vaccinations
+-- -----------------------------------------------------
+DROP PROCEDURE IF EXISTS sp_DeleteVaccination;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeleteVaccination(IN vaccination_vaccination_id INT)
+BEGIN
+    DELETE FROM Vaccinations
+    WHERE vaccination_id = vaccination_vaccination_id;
+END //
+DELIMITER ;

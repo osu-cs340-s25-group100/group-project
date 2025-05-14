@@ -100,4 +100,47 @@ router.post("/create", async function (req, res) {
     }
 });
 
+/**
+ * Citation: Code for UPDATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// UPDATE ROUTE
+router.post("/update", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.update_adoption_pet)))
+            data.update_adoption_pet = null;
+        if (isNaN(parseInt(data.update_adoption_customer)))
+            data.update_adoption_customer = null;
+
+        const updateQuery = `CALL sp_UpdateAdoption(?, ?, ?, ?);`;
+        const selectQuery = `SELECT * FROM Adoptions WHERE adoption_id = ?;`;
+
+        await db.query(updateQuery, [
+            data.update_adoption_id,
+            data.update_adoption_customer,
+            data.update_adoption_pet,
+            data.update_adoption_date
+        ]);
+        const [[rows]] = await db.query(selectQuery, [
+            data.update_adoption_id
+        ]);
+
+        console.log(
+            `UPDATE Adoptions. ID: ${data.update_adoption_id} ` +
+            `Customer ID: ${rows.customer_id} ` +
+            `Pet ID: ${rows.pet_id} ` + 
+            `Adoption Date: ${rows.adoption_date}`
+        );
+
+        res.redirect('/adoptions');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
 module.exports = router;

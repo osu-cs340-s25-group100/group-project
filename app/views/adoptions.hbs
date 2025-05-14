@@ -83,7 +83,7 @@
 
 {{! UPDATE form }}
 <h2>Update an Adoption</h2>
-<form class='cuForm' id='update_adoption_form'>
+<form class='cuForm' id='update_adoption_form' method='POST' action='/adoptions/update'>
     <label for='update_adoption_id'>Adoption to Update: </label>
     {{! Adoption ID }}
     <select name='update_adoption_id' id='update_adoption_id' required>
@@ -110,7 +110,7 @@
     <br>
     {{! Pet }}
     <label for='update_adoption_pet'>Pet: </label>
-    <select name='update_adoption_petr' id='update_adoption_pet' required>
+    <select name='update_adoption_pet' id='update_adoption_pet' required>
         <option value='NULL' disabled selected>Select a Pet</option>
         {{#each unadopted_pets}}
         <option value='{{this.pet_id}}'>

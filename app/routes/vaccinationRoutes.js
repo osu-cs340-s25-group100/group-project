@@ -76,7 +76,46 @@ router.post("/create", async function (req, res) {
             data.create_vaccination_date
         ]);
 
-        console.log(`CREATE Vaccinations. ID: ${rows.new_id} ` + `Pet ID: ${data.create_vaccination_pet}` + `Vaccine ID: ${data.create_vaccination_vaccine}` + `Vaccination Date: ${data.create_vaccination_date}`);
+        console.log(`CREATE Vaccinations. ID: ${rows.new_id} ` + `Pet ID: ${data.create_vaccination_pet} ` + `Vaccine ID: ${data.create_vaccination_vaccine} ` + `Vaccination Date: ${data.create_vaccination_date}`);
+
+        res.redirect('/vaccinations');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+/**
+ * Citation: Code for UPDATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// UPDATE ROUTE
+router.post("/update", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.update_vaccination_pet)))
+            data.update_vaccination_pet = null;
+        if (isNaN(parseInt(data.update_vaccination_vaccine)))
+            data.update_vaccination_vaccine = null;
+
+        const updateQuery = `CALL sp_UpdateVaccination(?, ?, ?, ?);`;
+        const selectQuery = `SELECT * FROM Vaccinations WHERE vaccination_id = ?;`;
+
+        await db.query(updateQuery, [
+            data.update_vaccination_id,
+            data.update_vaccination_pet,
+            data.update_vaccination_vaccine,
+            data.update_vaccination_date
+        ]);
+        const [[rows]] = await db.query(selectQuery, [data.update_vaccination_id]);
+
+        console.log(
+            `UPDATE Vaccinations. ID: ${data.update_vaccination_id} ` + `Pet ID: ${rows.update_vaccination_pet} ` + 
+            `Vaccine ID: ${rows.update_vaccination_vaccine} ` + `Vaccination Date: ${rows.update_vaccination_date}`
+        );
 
         res.redirect('/vaccinations');
     } catch (error) {

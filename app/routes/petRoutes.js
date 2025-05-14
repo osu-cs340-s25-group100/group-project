@@ -130,7 +130,7 @@ router.post("/update", async function (req, res) {
         ]);
         const [[rows]] = await db.query(selectQuery, [data.update_pet_id]);
 
-        console.log(`UPDATE Pets. ID: ${data.update_pet_id} ` + `Name: ${rows.update_pet_name}`);
+        console.log(`UPDATE Pets. ID: ${data.update_pet_id} ` + `Name: ${rows.name}`);
 
         res.redirect('/pets');
     } catch (error) {

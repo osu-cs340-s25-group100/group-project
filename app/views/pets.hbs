@@ -57,20 +57,20 @@
     <br>
     {{! Birthday }}
     <label for="create_pet_birthday">Birthday: </label>
-    <input type="date" id="create_pet_birthday" name="create_pet_birthday">
+    <input type="date" id="create_pet_birthday" name="create_pet_birthday" required >
     <br>
     {{! Date Arrived }}
     <label for="create_pet_date_arrived">Date Arrived: </label>
-    <input type="date" id="create_pet_date_arrived" name="create_pet_date_arrived">
+    <input type="date" id="create_pet_date_arrived" name="create_pet_date_arrived" required >
     <br>
     {{! Adoption Cost }}
     <label for='create_pet_adoption_cost'>Adoption Cost: </label>
-    <input type='text' name='create_pet_adoption_cost' id='create_pet_adoption_cost' />
+    <input type='text' name='create_pet_adoption_cost' id='create_pet_adoption_cost' required />
     <br>
     {{! Gender }}
     <label for='create_pet_gender'>Gender:</label>
     <select name='create_pet_gender' id='create_pet_gender' required>
-        <option value='NULL' disabled selected>Select a Gender</option>
+        <option value='' disabled selected>Select a Gender</option>
         <option value='M'>M</option>
         <option value='F'>F</option>
     </select>
@@ -78,7 +78,7 @@
     {{! Species }}
     <label for='create_pet_species'>Species: </label>
     <select name='create_pet_species' id='create_pet_species' required>
-        <option value='NULL' disabled selected>Select a Species</option>
+        <option value='' disabled selected>Select a Species</option>
         {{#each species}}
         <option value='{{this.species_id}}'>
             {{this.species_id}}
@@ -91,7 +91,7 @@
     {{! Locations }}
     <label for='create_pet_location'>Location: </label>
     <select name='create_pet_location' id='create_pet_location' required>
-        <option value='NULL' disabled selected>Select a Location</option>
+        <option value='' disabled selected>Select a Location</option>
         {{#each locations}}
         <option value='{{this.location_id}}'>
             {{this.location_id}}
@@ -126,20 +126,20 @@
     <br>
     {{! Birthday }}
     <label for="update_pet_birthday">Birthday: </label>
-    <input type="date" id="updatepet_birthday" name="update_pet_birthday">
+    <input type="date" id="updatepet_birthday" name="update_pet_birthday" required >
     <br>
     {{! Date Arrived }}
     <label for="update_pet_date_arrived">Date Arrived: </label>
-    <input type="date" id="update_pet_date_arrived" name="update_pet_date_arrived">
+    <input type="date" id="update_pet_date_arrived" name="update_pet_date_arrived" required >
     <br>
     {{! Adoption Cost }}
     <label for='update_pet_adoption_cost'>Adoption Cost: </label>
-    <input type='text' name='update_pet_adoption_cost' id='update_pet_adoption_cost' />
+    <input type='text' name='update_pet_adoption_cost' id='update_pet_adoption_cost' required />
     <br>
     {{! Gender }}
     <label for='update_pet_gender'>Gender:</label>
     <select name='update_pet_gender' id='update_pet_gender' required>
-        <option value='NULL' disabled selected>Select a Gender</option>
+        <option value='' disabled selected>Select a Gender</option>
         <option value='M'>M</option>
         <option value='F'>F</option>
     </select>
@@ -147,7 +147,7 @@
     {{! Species }}
     <label for='update_pet_species'>Species: </label>
     <select name='update_pet_species' id='update_pet_species' required>
-        <option value='NULL' disabled selected>Select a Species</option>
+        <option value='' disabled selected>Select a Species</option>
         {{#each species}}
         <option value='{{this.species_id}}'>
             {{this.species_id}}
@@ -160,7 +160,7 @@
     {{! Locations }}
     <label for='update_pet_location'>Location: </label>
     <select name='update_pet_location' id='update_pet_location' required>
-        <option value='NULL' disabled selected>Select a Location</option>
+        <option value='' disabled selected>Select a Location</option>
         {{#each locations}}
         <option value='{{this.location_id}}'>
             {{this.location_id}}

@@ -49,3 +49,19 @@ BEGIN
     WHERE adoption_id = adoption_adoption_id;
 END //
 DELIMITER ;
+
+-- Citation: DELETE code is adapted from Canvas, CS 340 Module 8
+-- Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+
+-- -----------------------------------------------------
+-- DELETE Adoptions
+-- -----------------------------------------------------
+DROP PROCEDURE IF EXISTS sp_DeleteAdoptions;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeleteAdoption(IN adoption_adoption_id INT)
+BEGIN
+    DELETE FROM Adoptions
+    WHERE adoption_id = adoption_adoption_id;
+END //
+DELIMITER ;

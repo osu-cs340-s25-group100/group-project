@@ -114,8 +114,8 @@ router.post("/update", async function (req, res) {
         const [[rows]] = await db.query(selectQuery, [data.update_vaccination_id]);
 
         console.log(
-            `UPDATE Vaccinations. ID: ${data.update_vaccination_id} ` + `Pet ID: ${rows.update_vaccination_pet} ` + 
-            `Vaccine ID: ${rows.update_vaccination_vaccine} ` + `Vaccination Date: ${rows.update_vaccination_date}`
+            `UPDATE Vaccinations. ID: ${data.update_vaccination_id} ` + `Pet ID: ${rows.pet_id} ` + 
+            `Vaccine ID: ${rows.vaccine_id} ` + `Vaccination Date: ${rows.vaccination_date}`
         );
 
         res.redirect('/vaccinations');

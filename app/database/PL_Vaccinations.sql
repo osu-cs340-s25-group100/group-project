@@ -43,7 +43,7 @@ CREATE PROCEDURE sp_UpdateVaccination(
 BEGIN
     UPDATE Vaccinations
     SET
-        pet_id= vaccination_pet_id,
+        pet_id = vaccination_pet_id,
         vaccine_id = vaccination_vaccine_id,
         vaccination_date = vaccination_vaccination_date
     WHERE vaccination_id = vaccination_vaccination_id;

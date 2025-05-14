@@ -50,7 +50,7 @@
     {{! Pets }}
     <label for='create_vaccination_pet'>Pets: </label>
     <select name='create_vaccination_pet' id='create_vaccination_pet' required>
-        <option value='NULL' disabled selected>Select a Pet</option>
+        <option value='' disabled selected>Select a Pet</option>
         {{#each pets}}
         <option value='{{this.pet_id}}'>
             {{this.pet_id}}
@@ -63,7 +63,7 @@
     {{! Vaccines }}
     <label for='create_vaccination_vaccine'>Vaccines: </label>
     <select name='create_vaccination_vaccine' id='create_vaccination_vaccine' required>
-        <option value='NULL' disabled selected>Select a Vaccine</option>
+        <option value='' disabled selected>Select a Vaccine</option>
         {{#each vaccines}}
         <option value='{{this.vaccine_id}}'>
             {{this.vaccine_id}}
@@ -74,7 +74,7 @@
     </select>
     <br>
     <label for="create_vaccination_date">Date: </label>
-    <input type="date" id="create_vaccination_date" name="create_vaccination_date">
+    <input type="date" id="create_vaccination_date" name="create_vaccination_date" required>
     <br>
     <input type='submit' />
 </form>
@@ -95,8 +95,8 @@
     <br>
     {{! Pet }}
     <label for='update_vaccination_pet'>Pet: </label>
-    <select name='update_vaccination_pet' id='update_vaccination_pet'>
-        <option value='NULL' disabled selected>Select a Pet</option>
+    <select name='update_vaccination_pet' id='update_vaccination_pet' required>
+        <option value='' disabled selected>Select a Pet</option>
         {{#each pets}}
         <option value='{{this.pet_id}}'>
             {{this.pet_id}}
@@ -107,8 +107,8 @@
     </select>
     <br>
     <label for='update_vaccination_vaccine'>Vaccine: </label>
-    <select name='update_vaccination_vaccine' id='update_vaccination_vaccine'>
-        <option value='NULL' disabled selected>Select a Vaccine</option>
+    <select name='update_vaccination_vaccine' id='update_vaccination_vaccine' required>
+        <option value='' disabled selected>Select a Vaccine</option>
         {{#each vaccines}}
         <option value='{{this.vaccine_id}}'>
             {{this.vaccine_id}}
@@ -119,7 +119,7 @@
     </select>
     <br>
     <label for="update_vaccination_date">Date: </label>
-    <input type="date" id="update_vaccination_date" name="update_vaccination_date">
+    <input type="date" id="update_vaccination_date" name="update_vaccination_date" required>
     <br>
     <input type='submit' />
 </form>

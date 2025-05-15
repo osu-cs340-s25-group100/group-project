@@ -25,7 +25,8 @@ router.get('/', async function (req, res) {
         JOIN Pets
         ON Vaccinations.pet_id = Pets.pet_id
         JOIN Vaccines
-        ON Vaccinations.vaccine_id = Vaccines.vaccine_id;`;
+        ON Vaccinations.vaccine_id = Vaccines.vaccine_id
+        ORDER BY vaccination_id ASC;`;
 
         const pets_query =
         `SELECT
@@ -45,6 +46,104 @@ router.get('/', async function (req, res) {
 
         // Render vaccinations.hbs
         res.render('vaccinations', { vaccinations, pets, vaccines });
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        // Send a generic error message to the browser
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+/**
+ * Citation: Code for CREATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// CREATE ROUTE
+router.post("/create", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_vaccination_pet)))
+            data.create_vaccination_pet = null;
+        if (isNaN(parseInt(data.create_vaccination_vaccine)))
+            data.create_vaccination_vaccine = null;
+
+        const query = `CALL sp_CreateVaccination(?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query, [
+            data.create_vaccination_pet,
+            data.create_vaccination_vaccine,
+            data.create_vaccination_date
+        ]);
+
+        console.log(`CREATE Vaccinations. ID: ${rows.new_id} ` + `Pet ID: ${data.create_vaccination_pet} ` + `Vaccine ID: ${data.create_vaccination_vaccine} ` + `Vaccination Date: ${data.create_vaccination_date}`);
+
+        res.redirect('/vaccinations');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+/**
+ * Citation: Code for UPDATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// UPDATE ROUTE
+router.post("/update", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.update_vaccination_pet)))
+            data.update_vaccination_pet = null;
+        if (isNaN(parseInt(data.update_vaccination_vaccine)))
+            data.update_vaccination_vaccine = null;
+
+        const updateQuery = `CALL sp_UpdateVaccination(?, ?, ?, ?);`;
+        const selectQuery = `SELECT * FROM Vaccinations WHERE vaccination_id = ?;`;
+
+        await db.query(updateQuery, [
+            data.update_vaccination_id,
+            data.update_vaccination_pet,
+            data.update_vaccination_vaccine,
+            data.update_vaccination_date
+        ]);
+        const [[rows]] = await db.query(selectQuery, [data.update_vaccination_id]);
+
+        console.log(
+            `UPDATE Vaccinations. ID: ${data.update_vaccination_id} ` + `Pet ID: ${rows.pet_id} ` + 
+            `Vaccine ID: ${rows.vaccine_id} ` + `Vaccination Date: ${rows.vaccination_date}`
+        );
+
+        res.redirect('/vaccinations');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+/**
+ * Citation: Code for DELETE route is from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// DELETE ROUTE
+router.post('/delete', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const deleteQuery = `CALL sp_DeleteVaccination(?);`;
+        await db.query(deleteQuery, [data.delete_vaccination_id]);
+
+        console.log(
+            `DELETE Vaccinations. ID: ${data.delete_vaccination_id}`
+        );
+
+        res.redirect('/vaccinations');
     } catch (error) {
         console.error('Error executing queries:', error);
         // Send a generic error message to the browser

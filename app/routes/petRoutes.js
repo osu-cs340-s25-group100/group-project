@@ -64,4 +64,107 @@ router.get('/', async function (req, res) {
     }
 });
 
+/**
+ * Citation: Code for CREATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// CREATE ROUTE
+router.post("/create", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_pet_species)))
+            data.create_pet_species = null;
+        if (isNaN(parseInt(data.create_pet_location)))
+            data.create_pet_location = null;
+
+        const query = `CALL sp_CreatePet(?, ?, ?, ?, ?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query, [
+            data.create_pet_species,
+            data.create_pet_location,
+            data.create_pet_name,
+            data.create_pet_birthday,
+            data.create_pet_date_arrived,
+            data.create_pet_adoption_cost,
+            data.create_pet_gender
+        ]);
+
+        console.log(`CREATE Pets. ID: ${rows.new_id} ` + `Name: ${data.create_pet_name}`);
+
+        res.redirect('/pets');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+/**
+ * Citation: Code for UPDATE route is adapted from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// UPDATE ROUTE
+router.post("/update", async function (req, res) {
+    try {
+        let data = req.body;
+
+        if (isNaN(parseInt(data.create_pet_species)))
+            data.create_pet_species = null;
+        if (isNaN(parseInt(data.create_pet_location)))
+            data.create_pet_location = null;
+
+        const updateQuery = `CALL sp_UpdatePet(?, ?, ?, ?, ?, ?, ?, ?);`;
+        const selectQuery = `SELECT name FROM Pets WHERE pet_id = ?;`;
+
+        await db.query(updateQuery, [
+            data.update_pet_id,
+            data.update_pet_species,
+            data.update_pet_location,
+            data.update_pet_name,
+            data.update_pet_birthday,
+            data.update_pet_date_arrived,
+            data.update_pet_adoption_cost,
+            data.update_pet_gender
+        ]);
+        const [[rows]] = await db.query(selectQuery, [data.update_pet_id]);
+
+        console.log(`UPDATE Pets. ID: ${data.update_pet_id} ` + `Name: ${rows.name}`);
+
+        res.redirect('/pets');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+/**
+ * Citation: Code for DELETE route is from Canvas, CS 340 Module 8
+ * Link: https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
+ */
+// DELETE ROUTE
+router.post('/delete', async function (req, res) {
+    try {
+        let data = req.body;
+
+        const deleteQuery = `CALL sp_DeletePet(?);`;
+        await db.query(deleteQuery, [data.delete_pet_id]);
+
+        console.log(`DELETE Pets. ID: ${data.delete_pet_id} ` +
+            `Name: ${data.delete_pet_name}`
+        );
+
+        res.redirect('/pets');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        // Send a generic error message to the browser
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
 module.exports = router;

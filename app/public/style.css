@@ -43,6 +43,24 @@ nav {
     justify-content: space-between;
 }
 
+nav a{
+    font-family: arial, sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+nav a::before{
+    content: "> ";
+}
+
+nav a:visited {
+    color: black;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
 a {
     margin-left: 16px;
 }
@@ -86,6 +104,10 @@ footer{
     width: 50%;
 }
 
+.citation{
+    font-size: 11px;
+}
+
 #site-map-links{
     list-style-type: '-   ';
     display: inline;
@@ -96,6 +118,12 @@ footer{
     margin-left: 15px;
 }
 
+#site-map-links li a{
+    text-decoration: none;
+}
+#site-map-links li a:hover{
+    text-decoration: underline;
+}
 /*-- -----------------------------------------------------
 -- CRUD forms styling
 -- -----------------------------------------------------*/

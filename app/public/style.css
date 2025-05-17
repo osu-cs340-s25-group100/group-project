@@ -39,6 +39,8 @@ input, select {
 nav {
     background-color: lightblue;
     padding: 16px;
+    display: flex;
+    justify-content: space-between;
 }
 
 a {
@@ -53,3 +55,14 @@ a {
     padding-top: 3px;
     padding-bottom: 3px;
 }
+
+#content{
+    min-height: 600px;
+    margin-bottom: 50px;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+}
+

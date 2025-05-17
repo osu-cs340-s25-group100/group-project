@@ -11,23 +11,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        Navigation: 
-        <a href="/">Home</a>
-        <a href="/pets">Pets</a>
-        <a href="/adoptions">Adoptions</a>
-        <a href="/vaccinations">Vaccinations</a>
-        <a href="/customers">Customers</a>
-        <a href="/vaccines">Vaccines</a>
-        <a href="/shelters">Shelters</a>
-        <a href="/species">Species</a>
-        <form class="inline-form" id="reset-form" action="/reset" method="POST">
-            <input type="hidden" name="redirectTo" value="{{currentPage}}">
-            <button id="reset-btn" type="submit">RESET</button>
-        </form>
-    </nav>
+<div id="container">
+    <header>
+        <h1>Forever Home</h1>
+        <nav>
+            <div id="nav-routes">
+            <a href="/">Home</a>
+            <a href="/pets">Pets</a>
+            <a href="/adoptions">Adoptions</a>
+            <a href="/vaccinations">Vaccinations</a>
+            <a href="/customers">Customers</a>
+            <a href="/vaccines">Vaccines</a>
+            <a href="/shelters">Shelters</a>
+            <a href="/species">Species</a>
+            </div>
+            <form class="inline-form" id="reset-form" action="/reset" method="POST">
+                <input type="hidden" name="redirectTo" value="{{currentPage}}">
+                <button id="reset-btn" type="submit">RESET</button>
+            </form>
+        </nav>
 
-    {{{body}}}
+    </header>
 
+    <span id="hero-spacer"></span>
+
+    <div id="content">
+        {{{body}}}
+    </div>
+
+
+    <footer>
+        <p>(c) 2025 Paul & Cas</p>
+    </footer>
+</div>
 </body>
 </html>

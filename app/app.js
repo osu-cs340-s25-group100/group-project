@@ -33,6 +33,7 @@ app.use('/species', require('./routes/speciesRoutes'));
 app.use('/adoptions', require('./routes/adoptionRoutes'));
 app.use('/vaccinations', require('./routes/vaccinationRoutes'));
 app.use('/vaccines', require('./routes/vaccineRoutes'));
+app.use('/reset', require('./routes/resetRoutes'));
 
 // Home
 app.get('/', async function (req, res) {

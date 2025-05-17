@@ -21,6 +21,10 @@
         <a href="/vaccines">Vaccines</a>
         <a href="/shelters">Shelters</a>
         <a href="/species">Species</a>
+        <form class="inline-form" id="reset-form" action="/reset" method="POST">
+            <input type="hidden" name="redirectTo" value="{{currentPage}}">
+            <button id="reset-btn" type="submit">RESET</button>
+        </form>
     </nav>
 
     {{{body}}}

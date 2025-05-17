@@ -66,3 +66,32 @@ footer{
     justify-content: space-around;
 }
 
+/*-- -----------------------------------------------------
+-- UPDATE Adoptions
+-- -----------------------------------------------------*/
+
+#home-content{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#home-content h1{
+    margin-left: 0px;
+}
+
+#welcome-message, #site-message{
+    width: 50%;
+}
+
+#site-map-links{
+    list-style-type: '-   ';
+    display: inline;
+    margin-left: 15px;
+}
+
+#site-map-links li{
+    margin-left: 15px;
+}

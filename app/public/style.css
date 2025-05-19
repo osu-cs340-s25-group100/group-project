@@ -39,6 +39,26 @@ input, select {
 nav {
     background-color: lightblue;
     padding: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav a{
+    font-family: arial, sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+nav a::before{
+    content: "> ";
+}
+
+nav a:visited {
+    color: black;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 a {
@@ -52,4 +72,67 @@ a {
 .py3 {
     padding-top: 3px;
     padding-bottom: 3px;
+}
+
+#content{
+    min-height: 600px;
+    margin-bottom: 50px;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+}
+
+/*-- -----------------------------------------------------
+-- home.hbs styling
+-- -----------------------------------------------------*/
+
+#home-content{
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#home-content h1{
+    margin-left: 0px;
+}
+
+#welcome-message, #site-message{
+    width: 50%;
+}
+
+.citation{
+    font-size: 11px;
+}
+
+#site-map-links{
+    list-style-type: '-   ';
+    display: inline;
+    margin-left: 15px;
+}
+
+#site-map-links li{
+    margin-left: 15px;
+}
+
+#site-map-links li a{
+    text-decoration: none;
+}
+#site-map-links li a:hover{
+    text-decoration: underline;
+}
+/*-- -----------------------------------------------------
+-- CRUD forms styling
+-- -----------------------------------------------------*/
+
+.CRUD_forms{
+        margin: 10px;
+        display: flex;
+}
+
+.CRUD_forms div{
+        width: 50%;
 }

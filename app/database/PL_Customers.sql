@@ -8,7 +8,6 @@ DROP PROCEDURE IF EXISTS sp_CreateCustomer;
 
 DELIMITER //
 CREATE PROCEDURE sp_CreateCustomer(
-    IN customer_customer_id INT,
     IN customer_name VARCHAR(255),
     IN customer_address VARCHAR(255),
     IN customer_city VARCHAR(255),
@@ -63,7 +62,7 @@ CREATE PROCEDURE sp_UpdateCustomer(
 BEGIN
     UPDATE Customers
     SET
-        customer_customer_id = customer_customer_id,
+        customer_customer_id = customer_id,
         customer_name = customer_name,
         customer_address = customer_address,
         customer_city = customer_city,
@@ -84,7 +83,7 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS sp_DeleteCustomer;
 
 DELIMITER //
-CREATE PROCEDURE sp_DeleteAdoption(IN customer_customer_id INT)
+CREATE PROCEDURE sp_DeleteCustomer(IN customer_customer_id INT)
 BEGIN
     DELETE FROM Customers
     WHERE customer_id = customer_customer_id;

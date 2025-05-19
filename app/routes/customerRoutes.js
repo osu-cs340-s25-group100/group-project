@@ -60,11 +60,11 @@ router.post("/create", async function (req, res) {
         ]);
 
         console.log(
-            `CREATE Customers. ID: ${data.new_id} ` +
-            `Customer Name: ${rows.name} ` +
-            `Customer Address: ${rows.address} ` + `${rows.city} ` + `${rows.state} ` + `${rows.zip} ` +
-            `Customer Phone: ${rows.phone} ` +
-            `Customer Email: ${rows.email} `
+            `CREATE Customers. ID: ${rows.new_id} ` +
+            `Customer Name: ${data.name} ` +
+            `Customer Address: ${data.address} ` + `${data.city} ` + `${data.state} ` + `${data.zip} ` +
+            `Customer Phone: ${data.phone} ` +
+            `Customer Email: ${data.email} `
         );
 
         res.redirect('/customers');

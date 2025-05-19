@@ -18,7 +18,6 @@ CREATE PROCEDURE sp_CreateCustomer(
     OUT customer_id INT)
 BEGIN
     INSERT INTO Customers (
-        customer_id,
         name,
         address,
         city,
@@ -27,7 +26,6 @@ BEGIN
         phone,
         email)
     VALUES (
-               customer_customer_id,
                customer_name,
                customer_address,
                customer_city,
@@ -62,14 +60,14 @@ CREATE PROCEDURE sp_UpdateCustomer(
 BEGIN
     UPDATE Customers
     SET
-        customer_customer_id = customer_id,
-        customer_name = customer_name,
-        customer_address = customer_address,
-        customer_city = customer_city,
-        customer_state = customer_state,
-        customer_zip = customer_zip,
-        customer_phone = customer_phone,
-        customer_email = customer_email
+        customer_id = customer_customer_id,
+        name = customer_name,
+        address = customer_address,
+        city = customer_city,
+        state = customer_state,
+        zip = customer_zip,
+        phone = customer_phone,
+        email = customer_email
     WHERE customer_id = customer_customer_id;
 END //
 DELIMITER ;

@@ -61,10 +61,10 @@ router.post("/create", async function (req, res) {
 
         console.log(
             `CREATE Customers. ID: ${rows.new_id} ` +
-            `Customer Name: ${data.name} ` +
-            `Customer Address: ${data.address} ` + `${data.city} ` + `${data.state} ` + `${data.zip} ` +
-            `Customer Phone: ${data.phone} ` +
-            `Customer Email: ${data.email} `
+            `Customer Name: ${data.create_customer_name} ` +
+            `Customer Address: ${data.create_customer_address} ` + `${data.create_customer_city} ` + `${data.create_customer_state} ` + `${data.create_customer_zip} ` +
+            `Customer Phone: ${data.create_customer_phone} ` +
+            `Customer Email: ${data.create_customer_email} `
         );
 
         res.redirect('/customers');

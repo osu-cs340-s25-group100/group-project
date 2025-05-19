@@ -1,3 +1,5 @@
+DROP PROCEDURE IF EXISTS sp_ResetDatabase;
+
 DELIMITER //
 CREATE PROCEDURE sp_ResetDatabase()
 BEGIN

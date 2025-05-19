@@ -15,6 +15,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+// Middleware
+app.use((req, res, next) => {
+    res.locals.currentPage = req.originalUrl;
+    next();
+});
+
 // Handlebars
 const { engine } = require('express-handlebars'); // Import express-handlebars engine
 app.engine('.hbs', engine({ extname: '.hbs' })); // Create instance of handlebars

@@ -136,3 +136,10 @@ footer{
 .CRUD_forms div{
         width: 50%;
 }
+
+/* Search Form Styles */
+#search_pets_form {
+    max-width: 300px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}

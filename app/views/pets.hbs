@@ -5,6 +5,21 @@
 }}
 <h1>Pets</h1>
 
+{{! SEARCH form }}
+<form id="search_pets_form" method='GET' action='/pets/search'>
+    <fieldset>
+        <strong>Pet Search</strong>
+        <br><br>
+        <label for="search_pet_name">Name: </label>
+        <input type="text" id="search_pet_name" name="name" value="{{search.name}}" />
+        <br><br>
+        <!-- Get filtered results -->
+        <button id="search_pet_btn">Search</button>
+        <!-- Clear search form -->
+        <a href="/pets"><button type="button" id="clear_search_btn">Clear</button></a>
+    </fieldset>
+</form>
+
 {{! READ table }}
 <table>
     <thead>
@@ -32,17 +47,15 @@
             <td>{{this.species}}</td>
             <td>{{this.shelter}}</td>
             <td>{{this.adopted}}</td>
-
-            {{! DELETE form }}
-            <form id='delete_pet_form' method='POST' action='/pets/delete'>
-                <input type='hidden' name='delete_pet_id' value='{{this.pet_id}}' />
-                <input type='hidden' name='delete_pet_name' value='{{this.name}}' />
-                <td>
-                    <button type='submit'>
-                        Delete
-                    </button>
-                </td>
-            </form>
+            <td>
+                {{! DELETE form }}
+                <form id='delete_pet_form' method='POST' action='/pets/delete'>
+                    <input type='hidden' name='delete_pet_id' value='{{this.pet_id}}' />
+                    <input type='hidden' name='redirect_query' value='{{../queryString}}' />
+                    <input type='hidden' name='delete_pet_name' value='{{this.name}}' />
+                    <button type='submit'>Delete</button>
+                </form>
+            </td>
         </tr>
         {{/each}}
     </tbody>

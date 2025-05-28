@@ -10,6 +10,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../database/db-connector');
 
+// READ ROUTE
 router.get('/', async function (req, res) {
     try {
         // Get all pets.
@@ -157,7 +158,91 @@ router.post('/delete', async function (req, res) {
             `Name: ${data.delete_pet_name}`
         );
 
-        res.redirect('/pets');
+        // Show filtered table after deletion if a search has been performed
+        res.redirect(data.redirect_query || '/pets');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        // Send a generic error message to the browser
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
+
+// SEARCH ROUTE
+router.get('/search', async function (req, res) {
+    try {
+        // form data
+        let data = req.query;
+      
+        // WHERE clause
+        let whereClause = '';
+        
+        // query parameters
+        const queryParameters = [];
+
+        // create WHERE clause and push query parameters
+        if (data.name && data.name.trim() !== '') {
+            whereClause = 'WHERE Pets.name LIKE ?'            
+            queryParameters.push(`%${data.name}%`);
+        }
+
+        // get matching pets
+        const pets_query = `
+        SELECT
+            Pets.pet_id,
+            Pets.name,
+            DATE_FORMAT(Pets.birthday, '%m/%d/%Y') AS birthday,
+            DATE_FORMAT(Pets.date_arrived, '%m/%d/%Y') AS date_arrived,
+            Pets.adoption_cost,
+            Pets.gender,
+            Species.name AS species,
+            Locations.name AS shelter,
+            Pet_Adoptions.adopted
+        FROM Pets
+        JOIN Locations
+        ON Pets.location_id = Locations.location_id
+        JOIN Species
+        ON Pets.species_id = Species.species_id
+        JOIN
+        -- Subquery for adoption status for each pet.
+        (
+            SELECT
+                Pets.pet_id,
+                IF(
+                    Adoptions.adoption_id IS NOT NULL,
+                    "Y",
+                    "N"
+                ) AS adopted
+            FROM Pets
+            LEFT JOIN Adoptions
+            ON Pets.pet_id = Adoptions.pet_id
+        ) AS Pet_Adoptions
+        ON Pets.pet_id = Pet_Adoptions.pet_id
+        ${whereClause};`;
+
+        // perform the search
+        const [pets] = await db.query(pets_query, queryParameters);
+
+        // the rest is similar to the READ route
+        const species_query = `SELECT * FROM Species`;
+        const locations_query = `SELECT * FROM Locations`;
+        const [species] = await db.query(species_query);
+        const [locations] = await db.query(locations_query);
+
+        // Create the query string
+        // Docs for URLSearchParams: https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+        const searchParams = new URLSearchParams(data);
+        const queryString = `/pets/search?${searchParams.toString()}`;
+
+        // Render pets.hbs
+        res.render('pets', { 
+            pets,
+            species,
+            locations,
+            search: data,  // used to populate the search form
+            queryString    // used to populate hidden fields in delete form
+        });
     } catch (error) {
         console.error('Error executing queries:', error);
         // Send a generic error message to the browser
